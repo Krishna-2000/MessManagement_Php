@@ -102,13 +102,14 @@
 	<br><br>
 	<row>
 	<col col-sm-4>
+	<ion-card>
 	<form class="student_registration" action="" method="post" name="stu_reg">
-	<fieldset style="width: 500px;margin-top: 100px;">
+<!-- 	<fieldset style="width: 500px;margin-top: 100px;"> -->
 	<h1 style="text-align: center;">SIGNUP STUDENT</h1>
 		<div style="margin-left: 100px;">
 			
 			<br>
-		
+			
 			<label>Student Name</label>
 			<input type="text" class="form-field" name="student_name" placeholder="Name"><br>
 			<label>E-Mail</label>
@@ -128,9 +129,9 @@
 
 			<input type="submit" value="Sign Up" class="btn-hover color-1" name="login-input">
 			<div style="margin-left: 95px;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="login.php">Login</a></div>
-		
+			
 		</div>
-	</fieldset>
+	</ion-card>
 	</col>
 	</row>
 	
