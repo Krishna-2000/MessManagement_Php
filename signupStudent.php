@@ -109,11 +109,15 @@ ion-content {
         $email = $_REQUEST['email'];
         $password = $_REQUEST['password'];
         $roomno = $_REQUEST['roomno'];
+        $rollno = $_REQUEST['rollno'];
+        $mess_name = $_REQUEST['mess_name'];
+
 
         // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
-        $query = "insert into students(id,name,email,rollno,password,roomno,mess_id) values (1,'krishna','kps@123','b170881cs','vichukichu',123,'1');";
+        $query="insert into students(name,email,rollno,password,roomno,mess_name) values ('".$name."','".$email."','".$rollno."','".$password."',".$roomno.",'".$mess_name."');";
+        echo $query;
         $execute = mysqli_query($con,$query);
-        if(!execute)
+        if(!$execute)
         {
             die("Some error occurred");
         }
@@ -155,10 +159,26 @@ ion-content {
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Mess Name</ion-label>
                     <ion-item>
-                        <select class="form-field" name="mess_id">
-                            <optionn value="mess1">Mess1</option>
-                            <option value="mess2">Mess2</option>
-                            <option value="mess3">Mess3</option>
+                        <select class="form-field" name="mess_name">
+
+
+                            <?php
+                              $query = "SELECT mess_name FROM messes";
+                              $result = mysqli_query($con, $query);
+
+                              if (mysqli_num_rows($result) > 0) {
+                                  while($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='".$row['mess_name']."'>".$row['mess_name']."</option>";
+                                  }
+                              } else {
+                                  echo "0 results";
+                              }
+
+                              ?>
+
+
+
+
                         </select><br>
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Room No</ion-label>
@@ -167,7 +187,7 @@ ion-content {
                     </ion-item>
                   </ion-list>
 
-                  <div style="position:relative;left:70px;"   >
+                  <div style="position:relative;left:70px;">
                     <input type="submit" name="Sign Up" style="width: 300px;" class="btn-hover color-1">
                 </div>
                 <div style="text-align: center;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="login.php">Login</a></div>
