@@ -99,7 +99,10 @@ ion-content {
 <h1><?php session_start(); $rollno=$_SESSION['rollno']?></h1>
 <?php 
     require_once('db.php');
-
+    $query = "select count(*) from students;";
+    $exec = mysqli_query($con,$query);
+    $result = mysqli_fetch_array($exec);
+    $id = $result[0] + 1;
     if(isset($_REQUEST['name']))
     {
         $name = $_REQUEST['name'];
@@ -108,8 +111,9 @@ ion-content {
         $password_confirmation = $_REQUEST['password_confirmation'];
         $mess_id = $_REQUEST['mess_id'];
         $roomno = $_REQUEST['roomno'];
-        
-        $query = "INSERT INTO students(name,email,rollno,password,roomno,mess_id) VALUES ('".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
+
+        // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
+        $query = "insert into students(id,name,email,rollno,password,roomno,mess_id) values (1,'krishna','kps@123','b170881cs','vichukichu',123,'m1');";
         $execute = mysql_query($con,$query);
         if(!execute)
         {
@@ -123,7 +127,7 @@ ion-content {
 ?>
 
 
-<form class="student_signup" method="post" action="" > 
+<form class="student_signup" action="" method="post"> 
 
           <ion-grid>
             <ion-row>
