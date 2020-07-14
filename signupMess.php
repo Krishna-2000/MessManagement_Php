@@ -96,7 +96,10 @@ ion-content {
 <?php
     require_once('db.php');
     session_start();
-    $query = "select count(*) from students;";
+
+
+    $_SESSION['rollno'] = $rollno;
+    $query = "select mess_name from messes where id=1;";
     $exec = mysqli_query($con,$query);
     if(!exec)
     {
@@ -104,7 +107,7 @@ ion-content {
     }
     $result = mysqli_fetch_array($exec);
     $id = $result[0];
-
+    echo $id;
 
 ?>
 

@@ -111,15 +111,14 @@ ion-content {
         $password_confirmation = $_REQUEST['password_confirmation'];
         $mess_id = $_REQUEST['mess_id'];
         $roomno = $_REQUEST['roomno'];
-
         // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
-        $query = "insert into students(id,name,email,rollno,password,roomno,mess_id) values (1,'krishna','kps@123','b170881cs','vichukichu',123,'m1');";
-        $execute = mysql_query($con,$query);
+        $query = "insert into students(id,name,email,rollno,password,mess_id,roomno) values (1,'krishna','kps@123','b170881cs','vichukichu','m1',123);";
+        $execute = mysqli_query($con,$query);
         if(!execute)
         {
             die("Some error occurred");
         }
-        header("location:login.php");
+        header("location:signupStudent.php");
     }
     else
     {
