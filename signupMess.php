@@ -93,6 +93,22 @@ ion-content {
 }
 </style>
 
+<?php
+    require_once('db.php');
+    session_start();
+    $query = "select count(*) from students;";
+    $exec = mysqli_query($con,$query);
+    if(!exec)
+    {
+        die('Some error is found!');
+    }
+    $result = mysqli_fetch_array($exec);
+    $id = $result[0];
+
+
+?>
+
+
 <ion-content style="background-image: url('bg-01.jpg');">
 <form>  
 <ion-grid>
@@ -100,18 +116,6 @@ ion-content {
   <ion-col></ion-col><ion-col>
     <ion-card style="width:500px;top:120px;"><br>
       <ion-card-title style="position:relative;left:200px;font-size:25px">SIGN UP</ion-card-title>
-     <!--  <br><br>
-
-      <% if @mess && @mess.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @mess.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %> -->
-      
       <ion-list style="position:relative;left:70px;" lines="none">
         
         <br><ion-label>&emsp;&nbsp;Mess Name</ion-label>

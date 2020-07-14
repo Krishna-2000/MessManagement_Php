@@ -93,26 +93,43 @@ ion-content {
     --background: #ccc url("bg-01.jpg") no-repeat center center / cover;
 }
 </style>
+
 <ion-content style="background-image: url('bg-01.jpg');">
 
-<form> 
+<h1><?php session_start(); $rollno=$_SESSION['rollno']?></h1>
+<?php 
+    require_once('db.php');
+
+    if(isset($_REQUEST['name']))
+    {
+        $name = $_REQUEST['name'];
+        $email = $_REQUEST['email'];
+        $password = $_SESSION['password'];
+        $password_confirmation = $_REQUEST['password_confirmation'];
+        $mess_id = $_REQUEST['mess_id'];
+        $roomno = $_REQUEST['roomno'];
+        
+        $query = "INSERT INTO students(name,email,rollno,password,roomno,mess_id) VALUES ('".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
+        $execute = mysql_query($con,$query);
+        if(!execute)
+        {
+            die("Some error occurred");
+        }
+        header("location:login.php");
+    }
+    else
+    {
+    
+?>
+
+
+<form class="student_signup" method="post" action="" > 
 
           <ion-grid>
             <ion-row>
               <ion-col></ion-col><ion-col>
                 <ion-card style="width:500px;top:50px;"><br>
                   <ion-card-title style="position:relative;left:200px;font-size:25px">SIGN UP</ion-card-title>
-                  
-             <!--       <% if @student && @student.errors.any? %>
-    <div id="error_explanation">
-
-      <ul>
-        <% @student.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %> -->
                   <ion-list style="position:relative;left:70px;" lines="none">
                     <br><ion-label>&emsp;&nbsp;Name</ion-label>
                     <ion-item>
@@ -158,9 +175,6 @@ ion-content {
               <ion-col></ion-col>
             </ion-row>
           </ion-grid>
-          
-      
-         
-
 </form>
+<?php } ?>
 </ion-content>
