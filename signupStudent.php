@@ -96,7 +96,7 @@ ion-content {
 
 <ion-content style="background-image: url('bg-01.jpg');">
 
-<h1><?php session_start(); $rollno=$_SESSION['rollno']?></h1>
+<h1><?php session_start();?></h1>
 <?php 
     require_once('db.php');
     $query = "select count(*) from students;";
@@ -107,14 +107,12 @@ ion-content {
     {
         $name = $_REQUEST['name'];
         $email = $_REQUEST['email'];
-        $password = $_SESSION['password'];
-        $password_confirmation = $_REQUEST['password_confirmation'];
-        $mess_id = $_REQUEST['mess_id'];
+        $password = $_REQUEST['password'];
         $roomno = $_REQUEST['roomno'];
 
         // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
-        $query = "insert into students(id,name,email,rollno,password,roomno,mess_id) values (1,'krishna','kps@123','b170881cs','vichukichu',123,'m1');";
-        $execute = mysql_query($con,$query);
+        $query = "insert into students(id,name,email,rollno,password,roomno,mess_id) values (1,'krishna','kps@123','b170881cs','vichukichu',123,'1');";
+        $execute = mysqli_query($con,$query);
         if(!execute)
         {
             die("Some error occurred");
@@ -157,10 +155,10 @@ ion-content {
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Mess Name</ion-label>
                     <ion-item>
-                        <select class="form-field">
-                            <option>Mess1</option>
-                            <option>Mess2</option>
-                            <option>Mess3</option>
+                        <select class="form-field" name="mess_id">
+                            <optionn value="mess1">Mess1</option>
+                            <option value="mess2">Mess2</option>
+                            <option value="mess3">Mess3</option>
                         </select><br>
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Room No</ion-label>
