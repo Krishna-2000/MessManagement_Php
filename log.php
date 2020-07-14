@@ -1,5 +1,6 @@
 <html>
   <head>
+  <script src="script.js" type="text/javascript"></script>
     <script
       type="module"
       src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"
@@ -20,7 +21,8 @@
           <ion-col offset="4">
             <ion-card>
               <ion-card-content>
-                <ion-label><?php echo "hi"; ?></ion-label>
+                <ion-label>hi</ion-label><br>
+                <ion-button onClick="printhi();"></ion-button>
               </ion-card-content>
             </ion-card>
           </ion-col>
