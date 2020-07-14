@@ -1,20 +1,11 @@
-<style type="text/css">
-	body{
-	  background: url('bg-01.jpg')  no-repeat center center fixed;
-	  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-	}
-	fieldset{
-  		/*border: 1px solid rgb(255,232,57);*/
-  			
-  		margin:auto;
-  		height: 450px;
-  		background-color: white;
-	}
-
-	:root {
+<html>
+<head>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
+<script type="text/javascript" src="application.js"></script>
+<style>
+:root {
 
     --input-color: #99A3BA;
     --input-border: #CDD9ED;
@@ -23,104 +14,182 @@
 
     --input-border-focus: #275EFE;
 
-	}
-	.form-field {
-	    display: block;
-	    width: 70%;
-	    padding: 8px 16px;
-	    line-height: 25px;
-	    font-size: 14px;
-	    font-weight: 500;
-	    font-family: inherit;
-	    border-radius: 6px;
-	    -webkit-appearance: none;
-	    color: var(--input-color);
-	    border: 1px solid var(--input-border);
-	    background: var(--input-background);
-	    transition: border .3s ease;
-	    &::placeholder {
-	        color: var(--input-placeholder);
-	    }
-	    &:focus {
-	        outline: none;
-	        border-color: var(--input-border-focus);
-	    }
-	}
-	* {
-	    -webkit-box-sizing: border-box;
-	    -moz-box-sizing: border-box;
-	    box-sizing: border-box;
-	}
-	.buttons {
-    	margin: 10%;
-    	text-align: center;
-	}
-	.btn-hover {
-	    width: 200px;
-	    font-size: 16px;
-	    font-weight: 600;
-	    color: #fff;
-	    cursor: pointer;
-	    margin: 20px;
-	    height: 55px;
-	    text-align:center;
-	    border: none;
-	    background-size: 300% 100%;
+}
 
-	    border-radius: 50px;
-	    moz-transition: all .4s ease-in-out;
-	    -o-transition: all .4s ease-in-out;
-	    -webkit-transition: all .4s ease-in-out;
-	    transition: all .4s ease-in-out;
-	}
-	.btn-hover:hover {
-	    background-position: 100% 0;
-	    moz-transition: all .4s ease-in-out;
-	    -o-transition: all .4s ease-in-out;
-	    -webkit-transition: all .4s ease-in-out;
-	    transition: all .4s ease-in-out;
-	}
+.form-field {
+    display: block;
+    width: 70%;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    border: 1px solid var(--input-border);
+    background: var(--input-background);
+    transition: border .3s ease;
+    &::placeholder {
+        color: var(--input-placeholder);
+    }
+    &:focus {
+        outline: none;
+        border-color: var(--input-border-focus);
+    }
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-	.btn-hover:focus {
-	    outline: none;
-	}
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
 
-	.btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 51%, #fc00ff 100%)}
-	.btn-grad:hover { background-position: right center; }
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
 
-	.btn-hover.color-1 {
-	    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 51%, #fc00ff 100%);
-	    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
-	}
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 51%, #fc00ff 100%)}
+.btn-grad:hover { background-position: right center; }
+
+.btn-hover.color-1 {
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 51%, #fc00ff 100%);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+html{
+    background-image: black;
+}
+ion-content {
+    --background: #ccc url("bg-01.jpg") no-repeat center center / cover;
+}
 </style>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Login | Mess Management</title>
 </head>
 <body>
-	<br><br>
-	<row>
-	<col col-sm-4>
-	<form class="login" action="" method="post" name="login">
-	<fieldset style="width: 500px;margin-top: 100px;">
-	<h1 style="text-align: center;">LOGIN</h1>
-		<div style="margin-left: 100px;">
-			
-			<br>
-		<div id="studentLogin">
-			<label>Roll No</label>
-			<input type="text" class="form-field" name="RollNo" placeholder="Roll No"><br>
-			<label>Password</label>
-			<input type="text" class="form-field" name="password" placeholder="Password"><br>
-			<input type="submit" value="Log In" class="btn-hover color-1" name="login-input">
-			<div style="margin-left: 60px;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="StudentRegistration.php">Sign Up as Student</a></div>
-		</div>
-	</div>
-	</fieldset>
-	</col>
-	</row>
-	
-  </form>
+    <ion-content style="background-image: url('../assets/images/bg-01.jpg');">
+    <ion-grid>
+    <ion-row>
+    <ion-col></ion-col><ion-col>
+    <ion-card style="width:500px;top:70px;">
+        <br>
+        
+            <ion-card-content>
+                
+                <ion-card-title style="position:relative;left:200px;font-size:25px"> LOGIN </ion-card-title ><br>
+                <ion-row>
+                    <ion-col>
+
+
+
+                        <ion-segment style="--ion-color-primary: #8f15f4;" value="student">
+        <ion-segment-button id="loginToggleInitial" onClick="loginToggle(event)" value="student" layout="icon-start">
+          <ion-label>Student</ion-label>
+        </ion-segment-button>
+        <ion-segment-button onClick="loginToggle(event)" value="mess" layout="icon-start">
+          <ion-label>Mess</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+
+
+                    </ion-col>
+                </ion-row>
+                <div style="text-align: center;"></div>
+
+                <div id="studentLogin">
+                <form>
+                <ion-row><ion-col size=12 offset=1.7><ion-list lines="none">
+
+               
+              
+                    <ion-label>&emsp;&nbsp;Roll No</ion-label>
+                    <ion-item>
+                        <input type="text" name="rollno" class="form-field">
+                    </ion-item><br>
+                    <ion-label>&emsp;&nbsp;Password</ion-label>
+                    <ion-item>
+                         <input type="text" name="password"  class="form-field">
+                    </ion-item>
+                   
+                </ion-list></ion-col></ion-row>
+                
+                <ion-row><ion-col offset=1.6>
+                <div>
+                    <input type="submit" name="Log In" class="btn-hover color-1" style="width: 300px;">
+                </div></ion-col></ion-row>
+                <div style="text-align: center;"><a onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" href="signupStudent.php">Sign Up as Student</a></div>
+                
+
+                </form>
+                </div>
+
+                <div id="messLogin" style="display: none;">
+                <form>    
+                <ion-row><ion-col size=12 offset=1.7><ion-list lines="none">
+
+
+               
+              
+                    <ion-label>&emsp;&nbsp;Mess Name</ion-label>
+                    <ion-item>
+                       <input type="text" name="mess_name" class="form-field">
+                    </ion-item><br>
+                    <ion-label>&emsp;&nbsp;Password</ion-label>
+                    <ion-item>
+                         <input type="text" name="password" class="form-field">
+                    </ion-item>
+                   
+                </ion-list></ion-col></ion-row>
+                
+                <ion-row><ion-col offset=1.6><div>
+                    <input type="submit" name="Log In" class="btn-hover color-1" style="width: 300px;">
+                </div></ion-col></ion-row>
+               <div style="text-align:center;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="signupMess.php">Sign Up as Mess</a></div>
+
+                
+                </div>
+            </form>
+            </ion-card-content>
+                    
+        <br>
+    </ion-card>
+    </ion-col><ion-col></ion-col>
+    </ion-row>
+    </ion-grid>
+
+    </ion-content>
 </body>
+<script>
+ 
+</script>
 </html>

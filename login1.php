@@ -1,4 +1,3 @@
-
 <style type="text/css">
 	body{
 	  background: url('bg-01.jpg')  no-repeat center center fixed;
@@ -10,8 +9,8 @@
 	fieldset{
   		/*border: 1px solid rgb(255,232,57);*/
   			
-  		margin:auto; 
-  		height: 900px;
+  		margin:auto;
+  		height: 450px;
   		background-color: white;
 	}
 
@@ -97,21 +96,32 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SignUp Student | Mess Management</title>
+<title>Login | Mess Management</title>
 </head>
 <body>
-	<ion-content>
-	<ion-grid>
-		<ion-row>
-			<ion-col>
-				<ion-card>
-					<ion-card-header>
-						<ion-title>SignUp Student</ion-title>
-					</ion-card-header>
-				</ion-card>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
-	</ion-content>
+	<br><br>
+	<row>
+	<col col-sm-4>
+	
+	<form class="login" action="" method="post" name="login">
+	<ion-card style="width: 500px;margin-top: 100px;">
+	<h1 style="text-align: center;">LOGIN</h1>
+		<div style="margin-left: 100px;">
+			
+			<br>
+		<div id="studentLogin">
+			<label>Roll No</label>
+			<input type="text" class="form-field" name="RollNo" placeholder="Roll No"><br>
+			<label>Password</label>
+			<input type="text" class="form-field" name="password" placeholder="Password"><br>
+			<input type="submit" value="Log In" class="btn-hover color-1" name="login-input">
+			<div style="margin-left: 60px;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="StudentRegistration.php">Sign Up as Student</a></div>
+		</div>
+	</div>
+	</ion-card>
+	</col>
+	</row>
+	
+  </form>
 </body>
 </html>
