@@ -345,7 +345,19 @@
                     <ion-card style="width:900px;">
                         <br><br>
                         <ion-card-container>
-                        <form id="myform">
+
+                        <?php
+                            if(isset($_REQUEST['from_date']))
+                            {
+                                $from_date = $_REQUEST['from_date'];
+                                $to_date = $_REQUEST['to_date'];
+
+                            }
+                            else
+                            {
+                        ?>
+
+                        <form id="myform" class="mess_cut" method="post" action="">
                             <ion-list lines="none">
                                 <ion-item>
                                     <ion-col>
@@ -367,7 +379,7 @@
                                        &emsp; No Of Days&emsp;
                                     </ion-col>
                                     <ion-col>
-                                    <input type="text" class="form-field" id="messcut[no_of_days]" name="numdays"/>
+                                    <input type="text" class="form-field" id="messcut[no_of_days]" name="numdays" />
                                     </ion-col>
                                 </ion-item>
                                 <br>
@@ -376,6 +388,7 @@
                             <ion-col></ion-col>
                             
                             <ion-col>
+                            <!-- <ion-button id="submit" onClick="post('/student/messcut',postData('form-field'),onMessCut);" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">SUBMIT</ion-button> -->
                             <ion-button id="submit" onClick="post('/student/messcut',postData('form-field'),onMessCut);" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">SUBMIT</ion-button>
                             </ion-col>
                             <ion-col>
@@ -385,6 +398,7 @@
                             </ion-item>
                             </ion-list>
                             </form>
+                    <?php } ?>
                         </ion-card-container>
                         <br>
                     </ion-card></ion-col></ion-row>
@@ -398,32 +412,57 @@
                             </ion-card-header>
                             <ion-card-content style='padding-bottom: 0px;'>
                                 <ion-list style='padding-bottom: 0px;'>
-                                
-                                        <% if @student.mess_cuts.count==0%>
-                                            <%= "No Mess Cuts have been recorded in this account."%>
-                                        <% else %>
-                                        <% i = 0 %>
-                                            <% @student.mess_cuts.each do |messcut| %>
-                                                <ion-item>
-                                                    <ion-col>
-                                                        &emsp;<%= i=i+1 %>
-                                                    </ion-col>
-                                                    <ion-col>
-                                                        <%= messcut.from_date.to_time.strftime("%d-%m-%Y")  %>
-                                                    </ion-col>
-                                                    <ion-col>
-                                                        <%= messcut.to_date.to_time.strftime("%d-%m-%Y")  %>
-                                                    </ion-col>
-                                                    <ion-col>
-                                                        &emsp;<%= messcut.no_of_days %>
-                                                    </ion-col>
-                                                </ion-item>
-                                            <% end %>
-                                        <% end %>
-                                            
-                                </ion-list>
+                                <?php
+                        $roll_no = $_SESSION['rollno'];
+                        $query = "select * from mess_cuts where mess_cuts.rollno='".$roll_no."';";
+                        $query2 = "select count(*) from mess_cuts where mess_cuts.rollno='".$roll_no."';";
+                        $exec = mysqli_query($con,$query);
+                        $exec2 = mysqli_query($con,$query2);
+                        if(!exec || !exec2)
+                        {
+                            die("Error");
+                        }
+                        //$res1 = mysqli_fetch_array($exec);
+                        $res2 = mysqli_fetch_array($exec2);
+                        
+                        if($res2[0]==0)
+                        {
+                            echo "No Mess cuts have been recorded yet.";
+                        }
+                    
+                        else
+                        {
+                            $i=0;
+                                   
+                                while($result=mysqli_fetch_array($exec))
+                                {
+                                   $i++;
+                                    echo '<ion-item>
+                                    <ion-col>
+                                       '.$i.'
+                                    </ion-col>
+                                   <ion-col>
+                                        '.$result[2].'
+                                   </ion-col>
+                                    <ion-col>
+                                        '.$result[3].'
+                                    </ion-col>
+                                    <ion-col>
+                                        '.$result[4].'
+                                    </ion-col>
+                                    </ion-item>';
+                                    
+
+                                }
+                            
+                        }
+                        ?>
+                        </ion-list>
                             </ion-card-content>
                         </ion-card>
+                                 
+                                            
+                                
                     </div>
                     </ion-col></ion-row>
                     </div>
@@ -452,7 +491,7 @@
                         <?php
                         if($res2[0]==0)
                         {
-                            echo "No Guests have been recorded yet.";
+                            echo "No Extras have been recorded yet.";
                         }
                     
                         else
