@@ -194,7 +194,7 @@
                                 $roll_no = $_SESSION['rollno'];
                                 $query = "select * from students where students.rollno='".$roll_no."';";
                                 $exec = mysqli_query($con,$query);
-                                if(!exec)
+                                if(!$exec)
                                 {
                                     die('Some error has occured!');
                                 }
@@ -292,7 +292,7 @@
                         $query2 = "select count(*) from guests where guests.rollno='".$roll_no."';";
                         $exec = mysqli_query($con,$query);
                         $exec2 = mysqli_query($con,$query2);
-                        if(!exec || !exec2)
+                        if(!$exec || !$exec2)
                         {
                             die("Error");
                         }
@@ -353,21 +353,21 @@
                                         From Date&emsp;
                                     </ion-col>
                                     <ion-col>
-                                        <input  type="date"  id="messcut[from_date]" name="pickup_date" onchange="cal()" format="dd/mm/yyyy" class="form-field">
+                                        <input  type="date"  id="from_date" name="pickup_date" onchange="cal()" format="dd/mm/yyyy" class="form-field">
                                     
                                     </ion-col>
                                     <ion-col>
                                         &emsp;To Date&emsp;
                                     </ion-col>
                                     <ion-col>
-                                        <input  type="date" id="messcut[to_date]" name="dropoff_date" onchange="cal()" format="dd/mm/yyyy" class="form-field">
+                                        <input  type="date" id="to_date" name="dropoff_date" onchange="cal()" format="dd/mm/yyyy" class="form-field">
                                     </ion-col>
                                     
                                     <ion-col>
                                        &emsp; No Of Days&emsp;
                                     </ion-col>
                                     <ion-col>
-                                    <input type="text" class="form-field" id="messcut[no_of_days]" name="numdays"/>
+                                    <input type="text" class="form-field" id="no_of_days" name="numdays"/>
                                     </ion-col>
                                 </ion-item>
                                 <br>
@@ -376,7 +376,7 @@
                             <ion-col></ion-col>
                             
                             <ion-col>
-                            <ion-button id="submit" onClick="post('/student/messcut',postData('form-field'),onMessCut);" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">SUBMIT</ion-button>
+                            <ion-button id="submit" onClick="post('/addMessCut.php',postData('form-field'),onMessCut);" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">SUBMIT</ion-button>
                             </ion-col>
                             <ion-col>
                             <ion-button id="reset" type="reset" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">RESET</ion-button>
@@ -440,7 +440,7 @@
                         $query2 = "select count(*) from extras where extras.rollno='".$roll_no."';";
                         $exec = mysqli_query($con,$query);
                         $exec2 = mysqli_query($con,$query2);
-                        if(!exec || !exec2)
+                        if(!$exec || !$exec2)
                         {
                             die("Error");
                         }
@@ -450,6 +450,7 @@
                             <ion-card-header id="y"><ion-item id="x"><ion-col>S.no</ion-col><ion-col>Item Name</ion-col><ion-col>Item Price</ion-col></ion-item></ion-card-header>
                             <ion-card-content>
                         <?php
+                        $sum=0;
                         if($res2[0]==0)
                         {
                             echo "No Guests have been recorded yet.";
@@ -457,8 +458,7 @@
                     
                         else
                         {
-                            $i=0;
-                             $sum = 0;    
+                            $i=0;    
                                 while($result=mysqli_fetch_array($exec))
                                 {
                                    $i++;

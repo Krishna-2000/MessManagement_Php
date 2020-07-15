@@ -111,7 +111,7 @@ ion-content {
         $roomno = $_REQUEST['roomno'];
         $rollno = $_REQUEST['rollno'];
        // $mess_id = $_REQUEST['mess_id'];
-        $mess_id = 'm1  ';
+        $mess_id = $_REQUEST['mess_id'];
 
         // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
         $query="insert into students(name,email,rollno,password,roomno,mess_id) values ('".$name."','".$email."','".$rollno."','".$password."',".$roomno.",'".$mess_id."');";
@@ -160,7 +160,7 @@ ion-content {
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Mess Name</ion-label>
                     <ion-item>
-                        <select class="form-field" name="mess_name">
+                        <select class="form-field" name="mess_id">
 
 
                             <?php
