@@ -98,7 +98,7 @@ ion-content {
 
 <h1><?php session_start();?></h1>
 <?php 
-    require_once('db.php');
+    require('db.php');
     $query = "select count(*) from students;";
     $exec = mysqli_query($con,$query);
     $result = mysqli_fetch_array($exec);
@@ -109,26 +109,20 @@ ion-content {
         $email = $_REQUEST['email'];
         $password = $_REQUEST['password'];
         $roomno = $_REQUEST['roomno'];
-<<<<<<< HEAD
-        // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
-        $query = "insert into students(id,name,email,rollno,password,mess_id,roomno) values (1,'krishna','kps@123','b170881cs','vichukichu','m1',123);";
-        $execute = mysqli_query($con,$query);
-        if(!execute)
-=======
         $rollno = $_REQUEST['rollno'];
-        $mess_name = $_REQUEST['mess_name'];
-
+       // $mess_id = $_REQUEST['mess_id'];
+        $mess_id = 'm1  ';
 
         // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
-        $query="insert into students(name,email,rollno,password,roomno,mess_name) values ('".$name."','".$email."','".$rollno."','".$password."',".$roomno.",'".$mess_name."');";
+        $query="insert into students(name,email,rollno,password,roomno,mess_id) values ('".$name."','".$email."','".$rollno."','".$password."',".$roomno.",'".$mess_id."');";
         echo $query;
         $execute = mysqli_query($con,$query);
         if(!$execute)
->>>>>>> bb1d37bbb262fe452486b933615582583ac9ff3a
         {
             die("Some error occurred");
         }
-        header("location:signupStudent.php");
+        $_SESSION['rollno'] = $rollno;
+        header("location:student_dashboard.php");
     }
     else
     {
@@ -170,12 +164,12 @@ ion-content {
 
 
                             <?php
-                              $query = "SELECT mess_name FROM messes";
+                              $query = "SELECT mess_name,mess_id FROM messes";
                               $result = mysqli_query($con, $query);
 
                               if (mysqli_num_rows($result) > 0) {
                                   while($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='".$row['mess_name']."'>".$row['mess_name']."</option>";
+                                    echo "<option value='".$row['mess_id']."'>".$row['mess_id']."</option>";
                                   }
                               } else {
                                   echo "0 results";

@@ -92,28 +92,35 @@ ion-content {
     --background: #ccc url("bg-01.jpg") no-repeat center center / cover;
 }
 </style>
+<ion-content style="background-image: url('bg-01.jpg');">
 
 <?php
     require_once('db.php');
     session_start();
 
-
-    $_SESSION['rollno'] = $rollno;
-    $query = "select mess_name from messes where id=1;";
-    $exec = mysqli_query($con,$query);
-    if(!exec)
+    if(isset($_REQUEST['mess_name']))
     {
-        die('Some error is found!');
+        $mess_name = $_REQUEST['mess_name'];
+        $mess_id = $mess_name;
+        $password = $_REQUEST['password'];
+        $password_confirmation = $_REQUEST['password_confirmation'];
+        $query = "insert into messes(mess_name,mess_id,password) values ('".$mess_name."','".$mess_id."','".$password."');";
+        echo $query;    
+        $exec = mysqli_query($con,$query);
+        if(!$exec)
+        {
+            die("Some error has occured");
+        }
+        $_SESSION['mess_id'] = $mess_id;
+        header("location: mess_dashboard.php");
     }
-    $result = mysqli_fetch_array($exec);
-    $id = $result[0];
-    echo $id;
+    else
+    {
 
 ?>
 
 
-<ion-content style="background-image: url('bg-01.jpg');">
-<form>  
+<form class="mess_signup" action="" method="post">  
 <ion-grid>
 <ion-row>
   <ion-col></ion-col><ion-col>
@@ -127,11 +134,11 @@ ion-content {
         </ion-item>
         <br><ion-label>&emsp;&nbsp;Password</ion-label>
         <ion-item>
-          <input type="text" name="Password" class="form-field">
+          <input type="text" name="password" class="form-field">
         </ion-item>
         <br><ion-label>&emsp;&nbsp;Password Confirmation</ion-label>
         <ion-item>
-          <input type="text" name="Password_confirmation" class="form-field">
+          <input type="text" name="password_confirmation" class="form-field">
         </ion-item>
       </ion-list>
 
@@ -145,5 +152,7 @@ ion-content {
   <ion-col></ion-col>
 </ion-row>
 </ion-grid>
-
+</form>
 </ion-content>
+
+    <?php } ?>

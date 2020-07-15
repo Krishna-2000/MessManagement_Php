@@ -1,3 +1,7 @@
+<?php
+    require "db.php";
+    session_start();
+?>
 <html>
 <head>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
@@ -96,6 +100,9 @@ ion-content {
 </style>
 </head>
 <body>
+
+    
+
     <ion-content style="background-image: url('../assets/images/bg-01.jpg');">
     <ion-grid>
     <ion-row>
@@ -127,7 +134,7 @@ ion-content {
                 <div style="text-align: center;"></div>
 
                 <div id="studentLogin">
-                <form>
+                <form class="student" action="" method="post">
                 <ion-row><ion-col size=12 offset=1.7><ion-list lines="none">
 
                
@@ -154,12 +161,8 @@ ion-content {
                 </div>
 
                 <div id="messLogin" style="display: none;">
-                <form>    
+                <form class="mess" action="" method="post">    
                 <ion-row><ion-col size=12 offset=1.7><ion-list lines="none">
-
-
-               
-              
                     <ion-label>&emsp;&nbsp;Mess Name</ion-label>
                     <ion-item>
                        <input type="text" name="mess_name" class="form-field">
@@ -178,7 +181,7 @@ ion-content {
 
                 
                 </div>
-            </form>
+                </form>
             </ion-card-content>
                     
         <br>
@@ -189,7 +192,4 @@ ion-content {
 
     </ion-content>
 </body>
-<script>
- 
-</script>
 </html>

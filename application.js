@@ -254,7 +254,7 @@ function post(url,postdata,callback){
 
 function onGetProfile(data,id,isOpeningModal)
 {
-
+  echo 
   var student = JSON.parse(data);
   if(isOpeningModal)
   {
