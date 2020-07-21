@@ -1,6 +1,10 @@
 <?php
     require "db.php";
     session_start();
+    if(!$_SESSION['rollno'])
+    {
+        header("location: login.html");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,7 +183,7 @@
                     </ion-col>
                     <ion-col offset='6' size='3'>
                         <a style="text-decoration: none; position: relative; left: 45px; top: 20px; font-size: 16px;" onClick="changePasswordPopover(event)" class="navlink">Change Password</a>
-                        <a class="navlink" href="/accounts/logout" style="text-decoration:none; position: relative; left: 75px; top: 20px; font-size: 16px;">Logout</a>
+                        <a class="navlink" href="logout.php" style="text-decoration:none; position: relative; left: 75px; top: 20px; font-size: 16px;">Logout</a>
                     </ion-col>
                 </ion-row>
                 <ion-row style="height: 1000px">

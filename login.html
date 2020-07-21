@@ -1,7 +1,3 @@
-<?php
-    require "db.php";
-    session_start();
-?>
 <html>
 <head>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
@@ -134,7 +130,7 @@ ion-content {
                 <div style="text-align: center;"></div>
 
                 <div id="studentLogin">
-                <form class="student" action="" method="post">
+                <form class="student" action="auth.php" method="post">
                 <ion-row><ion-col size=12 offset=1.7><ion-list lines="none">
 
                
