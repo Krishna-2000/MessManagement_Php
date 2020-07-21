@@ -622,7 +622,7 @@ function getStaffs() {
   xmlhttp.send();
 }
 
-function check(student_id, id, el) {
+function check(rollno, id, el) {
   if (el.previousSibling.value == "1") {
     document.getElementById("fees").innerHTML = "";
     el.previousSibling.value = "0";
@@ -635,7 +635,7 @@ function check(student_id, id, el) {
     var today = new Date().getDay();
     var txt = "";
 
-    post("/feestructure", "fee[student_id]=" + student_id, (data) => {
+    post("/feestructure.php", "rollno=" + rollno, (data) => {
       onGetFee(data, id);
     });
   }
@@ -655,14 +655,15 @@ function onGetFee(data, id) {
 
   NoOfGuests = myObj.guest.length;
   for (i = 0; i < myObj.extra.length; i++) {
-    TotalAmt += myObj.extra[i].price;
+    TotalAmt += +myObj.extra[i].item_price;
   }
   for (i = 0; i < myObj.messcut.length; i++) {
-    TotalNoOfMessCuts += myObj.messcut[i].no_of_days;
+    TotalNoOfMessCuts += +myObj.messcut[i].no_of_days;
   }
   MonthBill = 80 * 30 - 80 * TotalNoOfMessCuts;
   GuestFee = 80 * NoOfGuests;
   ExtraFee = TotalAmt;
+  alert([MonthBill, GuestFee, ExtraFee, TotalNoOfMessCuts]);
   TotalMonthFee = TotalAmt + 80 * 30 + NoOfGuests * 80 - 80 * TotalNoOfMessCuts;
   txt +=
     "<ion-card><ion-card-container><ion-list><ion-item><ion-col>Month Fee</ion-col><ion-col>" +

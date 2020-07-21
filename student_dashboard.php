@@ -538,9 +538,9 @@
                         <ion-row>
                             <ion-col size=4 offset=3>
                                 <ion-row><ion-col offset=1><div style="text-align: center;"><h1>My Mess Fee</h1></div><br><br></ion-col></ion-row>
-                                <input type=hidden value='0'/><ion-button expand="block" value=0 onClick="check(<%= session[:id] %>,'fees',this);" style = "height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">GET DETAILED FEE<ion-icon slot="end" name='chevron-down'></ion-icon></ion-button>
+                                <?php echo "<input type=hidden value='0'/><ion-button expand='block' value=0 onClick='check(\"".$_SESSION['rollno']."\",\"fees\",this);'  style='height:40px;background-color: #8f15f4;color:white;' color='#8f15f4'>GET DETAILED FEE<ion-icon slot='end' name='chevron-down'></ion-icon></ion-button>"; ?>
                                 <br>
-                                <div id="fees"></div>
+                                <div id='fees'></div>
                             </ion-col>
                         </ion-row>
                     </div>
@@ -565,7 +565,7 @@
         this.innerHTML =  `<%= render partial: 'change_password'%> `;
       }
     });
-    document.getElementById("defaultOpen").click();
+    document.getElementById('defaultOpen').click();
 
 
 </script>
