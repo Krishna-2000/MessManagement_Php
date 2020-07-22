@@ -14,31 +14,27 @@ function studentDataOptionChange(event) {
   document.getElementById("profileContent").innerHTML =
     "<ion-spinner></ion-spinner>";
   if (event.target.value == "extras") {
-    post("/extradata", "extra_list[student_id]=" + id, (data) => {
+    post("/extradata.php", "rollno=" + id, (data) => {
       onGetExtraList(data, "profileContent");
     });
   }
   if (event.target.value == "guests") {
-    post("/guestdata", "guest_list[student_id]=" + id, (data) => {
+    post("/guestdata.php", "rollno=" + id, (data) => {
       onGetGuestList(data, "profileContent");
     });
   }
   if (event.target.value == "profile") {
-    post(
-      "/MessManagement_Php/studentprofile",
-      "student_profile[student_id]=" + id,
-      (data) => {
-        onGetProfile(data, "profileContent", true);
-      }
-    );
+    post("/studentprofile.php", "rollno=" + id, (data) => {
+      onGetProfile(data, "profileContent", true);
+    });
   }
   if (event.target.value == "messfee") {
-    post("/feestructure", "fee[student_id]=" + id, (data) => {
+    post("/feestructure.php", "rollno=" + id, (data) => {
       onGetFee(data, "profileContent");
     });
   }
   if (event.target.value == "messcuts") {
-    post("/messcutdata", "student_profile[student_id]=" + id, (data) => {
+    post("/messcutdata.php", "rollno=" + id, (data) => {
       onGetMessCuts(data, "profileContent");
     });
   }
@@ -81,7 +77,7 @@ function onGetExtraList(data, id) {
     txt +=
       "<br><ion-card><ion-card-container><ion-list><ion-card-header><ion-item><ion-col><strong>S.No</strong></ion-col><ion-col><strong>Item</strong></ion-col><ion-col><strong>Price</strong></ion-col></ion-item></ion-card-header>";
     for (i = 0; i < myObj.data.length - 1; i++) {
-      sum += myObj.data[i].price;
+      sum += myObj.data[i].item_price;
       txt +=
         "<ion-item lines='none' ><ion-col>&emsp;" +
         (i + 1) +
@@ -89,11 +85,11 @@ function onGetExtraList(data, id) {
         "</ion-col><ion-col>&nbsp;" +
         myObj.data[i].item +
         "</ion-col><ion-col>" +
-        myObj.data[i].price +
+        myObj.data[i].item_price +
         ".00" +
         "</ion-col></ion-item>";
     }
-    sum += myObj.data[i].price;
+    sum += myObj.data[i].item_price;
     txt +=
       "<ion-item><ion-col>&emsp;" +
       (i + 1) +
@@ -101,7 +97,7 @@ function onGetExtraList(data, id) {
       "</ion-col><ion-col>&nbsp;" +
       myObj.data[i].item +
       "</ion-col><ion-col>" +
-      myObj.data[i].price +
+      myObj.data[i].item_price +
       ".00" +
       "</ion-col></ion-item></ion-list><ion-list><ion-card-footer><ion-item><ion-col></ion-col><ion-col>Total Amount</ion-col><ion-col>" +
       sum +
@@ -271,8 +267,8 @@ function post(url, postdata, callback) {
 }
 
 function onGetProfile(data, id, isOpeningModal) {
-  echo;
   var student = JSON.parse(data);
+  console.log(student);
   if (isOpeningModal) {
     document.getElementById("student_data_modal_title").innerHTML =
       student.data.name;
@@ -554,7 +550,7 @@ function getStudents(id, callback, isOpeningModal) {
           "'><ion-list>";
         for (x in myObj.data) {
           if (isOpeningModal == true) {
-            functionCall = callback + '("' + myObj.data[x].id + '")';
+            functionCall = callback + '("' + myObj.data[x].rollno + '")';
           } else {
             functionCall = callback + '("' + myObj.data[x].rollno + '")';
           }
@@ -666,7 +662,6 @@ function onGetFee(data, id) {
   MonthBill = 80 * 30 - 80 * TotalNoOfMessCuts;
   GuestFee = 80 * NoOfGuests;
   ExtraFee = TotalAmt;
-  alert([MonthBill, GuestFee, ExtraFee, TotalNoOfMessCuts]);
   TotalMonthFee = TotalAmt + 80 * 30 + NoOfGuests * 80 - 80 * TotalNoOfMessCuts;
   txt +=
     "<ion-card><ion-card-container><ion-list><ion-item><ion-col>Month Fee</ion-col><ion-col>" +
