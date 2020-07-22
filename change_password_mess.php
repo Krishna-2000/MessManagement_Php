@@ -23,7 +23,7 @@ else{
         echo json_encode(['changed'=>false,'error'=>'Minimum 6 characters required']);
         return;
     }
-    $query="update students set password='".$new."' where mess_id='".$mess_id."';";
+    $query="update messes set password='".$new."' where mess_id='".$mess_id."';";
 $execute = mysqli_query($con,$query);
 if(!$execute)
     {
