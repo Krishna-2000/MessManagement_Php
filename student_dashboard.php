@@ -563,7 +563,7 @@
 
     customElements.define('change-password', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML =`<?php echo $changePasswordHtml; ?>`;
+        this.innerHTML =`<?php echo $changePasswordStudent; ?>`;
       }
     });
     document.getElementById('defaultOpen').click();

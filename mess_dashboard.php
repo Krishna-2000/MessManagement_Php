@@ -1,5 +1,6 @@
 <?php
     require "db.php";
+    require_once "partials.php";
     session_start();
 ?>
 <!DOCTYPE html>
@@ -593,7 +594,7 @@ display: none !important;
 
     customElements.define('change-password', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML =  `<%= render partial: 'change_password'%> `;
+        this.innerHTML =  `<?php echo $changePasswordMess; ?>`;
       }
     });
 
