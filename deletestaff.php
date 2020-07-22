@@ -1,5 +1,5 @@
 <?php
-require('db.php');
+require('db.php'); 
 session_start();
 $id = $_REQUEST['id'];
 $query = "delete from staff where staff.id='".$id."';";

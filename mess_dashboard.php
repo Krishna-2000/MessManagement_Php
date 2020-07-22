@@ -372,7 +372,7 @@ display: none !important;
                         
                            <ion-card-header id="y"><ion-item id="x"><ion-col size=1>S.No</ion-col><ion-col offset=1.5>Roll No</ion-col><ion-col>From Date</ion-col><ion-col>To Date</ion-col><ion-col>No Of Days</ion-col>
                             </ion-item></ion-card-header>
-                            <ion-card-content style="padding-bottom: 0px;">
+                             <ion-card-content style="padding-bottom: 0px;">
                             <ion-list style="padding-bottom: 0px;"> 
                             <?php 
                               $query = " select * from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_id']."');";

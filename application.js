@@ -765,7 +765,7 @@ function deleteStaff(id) {
       }
     }
   };
-  xmlhttp.open("POST", "/MessManagement_Php/deletestaff.php", true);
+  xmlhttp.open("POST", "/deletestaff.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xmlhttp.send("id=" + id);
