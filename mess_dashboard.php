@@ -264,7 +264,7 @@ display: none !important;
                     </ion-col>
                     <ion-col offset='6' size='3'>
                         <a style="text-decoration: none; position: relative; left: 45px; top: 20px; font-size: 16px;" onClick="changePasswordPopover(event)" class="navlink">Change Password</a>
-                        <a class="navlink" href="/accounts/logout" style="text-decoration:none; position: relative; left: 75px; top: 20px; font-size: 16px;">Logout</a>
+                        <a class="navlink" href="logout.php" style="text-decoration:none; position: relative; left: 75px; top: 20px; font-size: 16px;">Logout</a>
                     </ion-col>
                 </ion-row>
                 <ion-row style="height: 1000px">
@@ -327,7 +327,7 @@ display: none !important;
                         <ion-grid>
                             <ion-row>
                                 <ion-col size=5 offset=3>
-                                    <h3 style="text-align: center; padding-right:34px">STUDENT LIST</h3><br>
+                                    <h3 style="text-align: center; padding-right:34px">STUDENT LIST</h3><br> 
                                     <ion-row><ion-col size=6>
                                     <ion-searchbar placeholder="Type Name" id="nameSearchBar_list_student"  onInput="filterStudentsByName('list_student')"></ion-searchbar></ion-col>
                                     <ion-col size=6>
@@ -361,40 +361,68 @@ display: none !important;
                     <div style="text-align: center;"><h3>MESS CUT: DETAILED LIST</h3></div><br>
                     <br>
                     <div id="mess_cut_area">
-                    <div  style="text-align: center;"><small id="blink"><b>Select a date for a Sorted List</b></small></div>
+                    <!-- <div  style="text-align: center;"><small id="blink"><b>Select a date for a Sorted List</b></small></div>
                       <ion-row>
                       
                       <ion-col size=6 offset=0.2><input onfocus="this.type='date'" onblur="this.type='date'"  type="date" placeholder="Date" class="mess-cut-field" onChange="filterMessCuts();" id="filter_date" /></ion-col></ion-row>
-                      <div id="noMatch" style="text-align: center;display: none;">There are no mess cuts on this date</div>
+                      <div id="noMatch" style="text-align: center;display: none;">There are no mess cuts on this date</div> -->
                     <div id="mess_cut_data">
                     <br>
                       <ion-card>
                         
-                           <ion-card-header id="y"><ion-item id="x"><ion-col size=3>Student Name</ion-col><ion-col offset=0.5>Roll No</ion-col><ion-col>From Date</ion-col><ion-col>To Date</ion-col><ion-col size=1.5>No Of Days</ion-col>
+                           <ion-card-header id="y"><ion-item id="x"><ion-col size=1>S.No</ion-col><ion-col offset=1.5>Roll No</ion-col><ion-col>From Date</ion-col><ion-col>To Date</ion-col><ion-col>No Of Days</ion-col>
                             </ion-item></ion-card-header>
                             <ion-card-content style="padding-bottom: 0px;">
-                            <ion-list style="padding-bottom: 0px;">    
-                      <% @mess.students.each do |student| %>
-                      <% student.mess_cuts.each do |messcut| %>
-                      <ion-item class="mess_cut_items">
-                        <ion-col size=3>
-                          <%= student.name %>
-                        </ion-col>
-                        <ion-col offset=0.5>
-                          <%= student.rollno %>
-                        </ion-col>
-                        <ion-col class="mess_cut_from">
-                          <%= messcut.from_date.to_time.strftime("%d-%m-%Y") %>
-                        </ion-col>
-                        <ion-col class="mess_cut_to">
-                          <%= messcut.to_date.to_time.strftime("%d-%m-%Y") %>
-                        </ion-col>
-                        <ion-col size=1.5>
-                          <%= messcut.no_of_days %>
-                        </ion-col>
-                        </ion-item>
-                      <% end %>
-                      <% end %>
+                            <ion-list style="padding-bottom: 0px;"> 
+                            <?php 
+                              $query = " select * from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_name']."');";
+                              $exec = mysqli_query($con,$query);
+                              $count = " select count(*) from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_name']."');";
+                              $exec2 = mysqli_query($con,$count);
+                       
+                        if(!$exec || !$exec2)
+                        {
+                            die("Error");
+                        }
+                        //$res1 = mysqli_fetch_array($exec);
+                        $res2 = mysqli_fetch_array($exec2);
+                       
+                        if($res2[0]==0)
+                        {
+                            echo "No Mess cuts have been recorded yet.";
+                        }
+                    
+                        else
+                        {
+                            $i=0;
+                                   
+                                while($result=mysqli_fetch_array($exec))
+                                {
+                                   $i++;
+                                    echo '<ion-item>
+                                    <ion-col>
+                                       '.$i.'
+                                    </ion-col>
+                                   <ion-col>
+                                        '.$result[1].'
+                                   </ion-col>
+                                    <ion-col>
+                                        '.$result[2].'
+                                    </ion-col>
+                                    <ion-col>
+                                        '.$result[3].'
+                                    </ion-col>
+                                    <ion-col>
+                                        '.$result[4].'
+                                    </ion-col>
+                                    </ion-item>';
+                                    
+
+                                }
+                            
+                        }
+                            ?>   
+                      
                       </ion-list></ion-card-content></ion-card>
                     </div>
                   </div>
@@ -467,34 +495,76 @@ display: none !important;
                     <div style="text-align: center;"><h3>MONTHLY MESS FEE</h3></div><br>
 
                     <br><br>
-                    <% if @mess.students.count == 0%>
-                        <div style="text-align: center;"><%= "The Mess is Empty!"%></div>
-                    <% else %>
-                      <ion-card>
-                        <ion-card-header id="y">
-                          
-                            <ion-item id="x" lines="none"><ion-col><b>S.No</b></ion-col><ion-col><b>Roll No</b></ion-col><ion-col><b>Total Amount</b></ion-col>
-                            </ion-item></ion-card-header>
-                            <ion-card-content style="padding-bottom: 0px;"><ion-list style="padding-bottom: 0px;">
-                            <% i =0 %>
-                            <% @mess.students.each do |student| %>
-                              <% sum = 80*30 %>
-                              <% n = 0 %>
-                              <% student.extras.each do |extra| %>
-                                  <% sum +=extra.price%>
-                              <% end %>
-                              <% sum += (student.guests.count)*80 %>
-                              <% student.mess_cuts.each do |messcut| %>
-                                  <% n+= messcut.no_of_days %>
-                              <% end %>
-                              <% sum -= n*80%>
-                              <% i = i+1 %>
-                              <ion-item><ion-col><%= i %></ion-col><ion-col><%= student.rollno %></ion-col><ion-col><%= sum %></ion-col></ion-item>
+                    <ion-card>
+                          <ion-card-header id="y">
+                            
+                              <ion-item id="x" lines="none"><ion-col><b>S.No</b></ion-col><ion-col><b>Roll No</b></ion-col><ion-col><b>Total Amount</b></ion-col>
+                              </ion-item></ion-card-header>
+                              <ion-card-content style="padding-bottom: 0px;"><ion-list style="padding-bottom: 0px;">
+
+                    <?php 
+                        $query1 = "select count(*) from students where mess_id='".$_SESSION['mess_name']."';";
+                        $exec1 = mysqli_query($con,$query1);
+                        if(!exec1)
+                        {
+                          die('Error');
+                        }
+                        $res1=mysqli_fetch_array($exec1);
+                        if($res1[0]==0)
+                        {
+                            echo "No one enlisted in the mess";
+                        }
+                        else
+                        {
+                              $i=0;
+                              $query2 = "select rollno from students where mess_id='".$_SESSION['mess_name']."';";
+                              $exec2 = mysqli_query($con,$query2);
+                              $sum = 80*30;
                               
-                          <% end %>
-                          </ion-list>
+                              while($result=mysqli_fetch_array($exec2))
+                              {
+
+                                $extra = "select sum(item_price) from extras where rollno='".$result[0]."';";
+                                $guests = "select count(*) from guests where rollno='".$result[0]."';";
+                                $mess_cuts = "select sum(no_of_days) from mess_cuts where rollno='".$result[0]."';";
+                                $ex1 = mysqli_query($con,$extra);
+                                $ex2 = mysqli_query($con,$guests);
+                                $ex3 = mysqli_query($con,$mess_cuts); 
+                                if(!ex1 || !ex2 || !ex3)
+                                {
+                                  die('Error');
+                                }
+                                $r1 = mysqli_fetch_array($ex1);
+                                $r2 = mysqli_fetch_array($ex2);
+                                $r3 = mysqli_fetch_array($ex3);
+                                $sum += ($r1[0]+($r2[0]*80))-($r3[0]*80);
+                                
+                                // echo $r1[0];
+                                // echo "hi";
+                                // echo $r2[0];
+                                // echo $r3[0];
+
+                                 $i++;
+                                  echo '<ion-item>
+                                  <ion-col>
+                                     '.$i.'
+                                  </ion-col>
+                                 <ion-col>
+                                      '.$result[0].'
+                                 </ion-col>
+                                  <ion-col>
+                                      '.$sum.'
+                                  </ion-col>
+                                  
+                                  </ion-item>';
+                                  $sum = 80*30;
+
+                              }
+                        }
+                    ?>
+                    </ion-list>
                         </ion-card-content>
-                      </ion-card><% end %>
+                      </ion-card>
                     </div>
                     </ion-col>
                 </ion-row>
@@ -556,10 +626,10 @@ customElements.define('add-staff-form', class ModalContent extends HTMLElement {
 document.getElementById("defaultOpen").click();
 
 
-var blink = document.getElementById('blink');
-setInterval(function() {
-   blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
-}, 3000); 
+// var blink = document.getElementById('blink');
+// setInterval(function() {
+//    blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+// }, 3000); 
 
 
 

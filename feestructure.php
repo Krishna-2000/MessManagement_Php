@@ -24,7 +24,6 @@ while($row = mysqli_fetch_assoc($result))
 {
     if(sizeof($row)>0)
     {
-
         array_push($extras,$row);
     }
 }

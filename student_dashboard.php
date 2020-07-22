@@ -392,7 +392,7 @@
                             <ion-col></ion-col>
                             
                             <ion-col>
-                            <ion-button id="submit" onClick="post('/addMessCut.php',postData('form-field'),onMessCut);" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">SUBMIT</ion-button>
+                            <ion-button id="submit" onClick="post('/MessManagement_Php/addMessCut.php',postData('form-field'),onMessCut);" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">SUBMIT</ion-button>
                             </ion-col>
                             <ion-col>
                             <ion-button id="reset" type="reset" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">RESET</ion-button>
