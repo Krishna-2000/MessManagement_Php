@@ -411,7 +411,7 @@ function changePassword(user) {
     document.getElementById("change_button").innerHTML = "Change";
   } else {
     post(
-      "/change_password_student.php",
+      `/change_password_${user}.php`,
       postData("changepassword"),
       onChangePassword
     );
