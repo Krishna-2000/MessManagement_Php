@@ -24,7 +24,7 @@ function studentDataOptionChange(event) {
     });
   }
   if (event.target.value == "profile") {
-    post("/studentprofile", "student_profile[student_id]=" + id, (data) => {
+    post("/MessManagement_Php/studentprofile", "student_profile[student_id]=" + id, (data) => {
       onGetProfile(data, "profileContent", true);
     });
   }
@@ -272,6 +272,7 @@ function onGetProfile(data, id, isOpeningModal) {
   if (isOpeningModal) {
     document.getElementById("student_data_modal_title").innerHTML =
       student.data.name;
+      console.log(id);
   }
   document.getElementById(
     id
@@ -425,6 +426,7 @@ function onAddGuest(data, el) {
 }
 
 function onCreateStaff(data) {
+  console.log(data);
   myObj = JSON.parse(data);
   if (myObj.added) {
     dismissModal();
@@ -533,7 +535,8 @@ function getStudents(id, callback, isOpeningModal) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       myObj = JSON.parse(this.responseText);
-      if (myObj.length == 0) {
+      //console.log(myObj.data);
+      if (myObj.data.length == 0) {
         txt +=
           "<p style='text-align: center;'>There are no Students in this mess currently</p>";
         document.getElementById(id).innerHTML = txt;
@@ -545,11 +548,11 @@ function getStudents(id, callback, isOpeningModal) {
           "' style='text-align:center;display:none;'>No matching students</p><ion-card id='students_card_" +
           id +
           "'><ion-list>";
-        for (x in myObj) {
+        for (x in myObj.data) {
           if (isOpeningModal == true) {
-            functionCall = callback + '("' + myObj[x].id + '")';
+            functionCall = callback + '("' + myObj.data[x].id + '")';
           } else {
-            functionCall = callback + '("' + myObj[x].rollno + '")';
+            functionCall = callback + '("' + myObj.data[x].rollno + '")';
           }
 
           txt +=
@@ -560,11 +563,11 @@ function getStudents(id, callback, isOpeningModal) {
             "'><ion-icon name='person' style='color: #8f15f4;'></ion-icon><ion-grid><ion-row><ion-col size='6'><label class='student_name_" +
             id +
             "' style='padding-left: 15px; font-size: 17px; font-weight: 500;'>" +
-            myObj[x].name +
+            myObj.data[x].name +
             "</label></ion-col><ion-col size='4' offset='2'><label class='student_roll_no_" +
             id +
             "'>" +
-            myObj[x].rollno +
+            myObj.data[x].rollno +
             "</label></ion-col></ion-row></ion-item>";
         }
         txt += "</ion-list></ion-card></ion-grid>";
@@ -572,7 +575,7 @@ function getStudents(id, callback, isOpeningModal) {
       }
     }
   };
-  xmlhttp.open("GET", "/studentdata", true);
+  xmlhttp.open("GET", "/MessManagement_Php/studentdata.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send();
 }
@@ -580,7 +583,7 @@ function getStudents(id, callback, isOpeningModal) {
 function getStaffs() {
   document.getElementById("stafflist").innerHTML =
     '<ion-spinner style="position:relative; left: 50px; top:70px"></ion-spinner>';
-  var obj,
+    var obj,
     dbParam,
     xmlhttp,
     myObj,
@@ -590,21 +593,22 @@ function getStaffs() {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       myObj = JSON.parse(this.responseText);
-      if (myObj.length == 0) {
+      console.log(myObj.staff);
+      if (myObj.staff.length == 0) {
         txt +=
           "<p style='text-align: center;'>There are no Staffs in this mess currently</p>";
         document.getElementById("stafflist").innerHTML = txt;
       } else {
         txt +=
           "<p id='noMatch' style='text-align:center;display:none;'>No matching students</p><ion-card id='students_card'><ion-list>";
-        for (x in myObj) {
+        for (x in myObj.staff) {
           txt +=
-            "<ion-item class='student_item' lines='none' href=#><ion-icon name='person' style='color: #8f15f4;'></ion-icon><ion-grid><ion-row><ion-col size='6'><label class='student_name' style='padding-left: 15px; position:relative; top: 4px;font-size: 17px; font-weight: 500;'>" +
-            myObj[x].name +
-            "</label></ion-col><ion-col size='3.5' offset='1.3'  ><ion-icon style='position:relative; top: 4px;color: #8f15f4; font-size:23px;' name='call'></ion-icon><label style='padding-left: 7px;' class='student_roll_no'>" +
-            myObj[x].phoneno +
+            "<ion-item class='student_item' lines='none' href=#><ion-icon name='person' style='color: #8f15f4;'></ion-icon><ion-grid><ion-row><ion-col size='3'><label class='student_name' style='padding-left: 15px; position:relative; top: 4px;font-size: 17px; font-weight: 500;'>" +
+            myObj.staff[x].name +
+            "</label></ion-col><ion-col size='5' offset='1.3'  ><ion-icon style='position:relative; top: 4px;color: #8f15f4; font-size:23px;' name='call'></ion-icon><label style='padding-left: 7px;' class='student_roll_no'>" +
+            myObj.staff[x].phoneno +
             "</label></ion-col><ion-col size='1.2'><ion-buttons><ion-button onClick='deleteAlert(" +
-            myObj[x].id +
+            myObj.staff[x].id +
             ")' slot='icon-only'><ion-icon name='trash' style='color:red;font-size: 25px;'></ion-icon></ion-button></ion-buttons></ion-col></ion-row></ion-item>";
         }
         txt += "</ion-list></ion-card></ion-grid>";
@@ -612,7 +616,7 @@ function getStaffs() {
       }
     }
   };
-  xmlhttp.open("GET", "/staffdata", true);
+  xmlhttp.open("GET", "/MessManagement_Php/staffdata.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send();
 }
@@ -741,7 +745,7 @@ async function deleteAlert(id) {
 }
 
 function deleteStaff(id) {
-  var token = document.querySelector('meta[name="csrf-token"]').content;
+  
   var obj,
     dbParam,
     xmlhttp,
@@ -752,15 +756,17 @@ function deleteStaff(id) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       myObj = JSON.parse(this.responseText);
+      
       if (myObj.deleted) {
+        
         getStaffs();
       }
     }
   };
-  xmlhttp.open("POST", "/deletestaff", true);
+  xmlhttp.open("POST", "/MessManagement_Php/deletestaff.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.setRequestHeader("X-CSRF-Token", token);
-  xmlhttp.send("staff[id]=" + id);
+
+  xmlhttp.send("id="+id);
 }
 
 function filterStudentsByName(id) {
@@ -768,6 +774,7 @@ function filterStudentsByName(id) {
   input = document.getElementById("nameSearchBar_" + id);
   filter = input.value.toUpperCase();
   names = document.getElementsByClassName("student_name_" + id);
+  console.log(names);
   items = document.getElementsByClassName("student_item_" + id);
   var count = 0;
   for (i = 0; i < names.length; i++) {

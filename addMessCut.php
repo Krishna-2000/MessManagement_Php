@@ -8,9 +8,11 @@ $query="insert into mess_cuts(rollno,from_date,to_date,no_of_days) values('".$_S
 $execute = mysqli_query($con,$query);
 if(!$execute)
     {
+        
         echo json_encode(['added'=>false]);
     }
 else{
+   
     echo json_encode(['added'=>true]);
 }
 ?>
