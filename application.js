@@ -24,9 +24,13 @@ function studentDataOptionChange(event) {
     });
   }
   if (event.target.value == "profile") {
-    post("/MessManagement_Php/studentprofile", "student_profile[student_id]=" + id, (data) => {
-      onGetProfile(data, "profileContent", true);
-    });
+    post(
+      "/MessManagement_Php/studentprofile",
+      "student_profile[student_id]=" + id,
+      (data) => {
+        onGetProfile(data, "profileContent", true);
+      }
+    );
   }
   if (event.target.value == "messfee") {
     post("/feestructure", "fee[student_id]=" + id, (data) => {
@@ -272,7 +276,7 @@ function onGetProfile(data, id, isOpeningModal) {
   if (isOpeningModal) {
     document.getElementById("student_data_modal_title").innerHTML =
       student.data.name;
-      console.log(id);
+    console.log(id);
   }
   document.getElementById(
     id
@@ -575,7 +579,7 @@ function getStudents(id, callback, isOpeningModal) {
       }
     }
   };
-  xmlhttp.open("GET", "/MessManagement_Php/studentdata.php", true);
+  xmlhttp.open("GET", "/studentdata.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send();
 }
@@ -583,7 +587,7 @@ function getStudents(id, callback, isOpeningModal) {
 function getStaffs() {
   document.getElementById("stafflist").innerHTML =
     '<ion-spinner style="position:relative; left: 50px; top:70px"></ion-spinner>';
-    var obj,
+  var obj,
     dbParam,
     xmlhttp,
     myObj,
@@ -616,7 +620,7 @@ function getStaffs() {
       }
     }
   };
-  xmlhttp.open("GET", "/MessManagement_Php/staffdata.php", true);
+  xmlhttp.open("GET", "/staffdata.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send();
 }
@@ -745,7 +749,6 @@ async function deleteAlert(id) {
 }
 
 function deleteStaff(id) {
-  
   var obj,
     dbParam,
     xmlhttp,
@@ -756,9 +759,8 @@ function deleteStaff(id) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       myObj = JSON.parse(this.responseText);
-      
+
       if (myObj.deleted) {
-        
         getStaffs();
       }
     }
@@ -766,7 +768,7 @@ function deleteStaff(id) {
   xmlhttp.open("POST", "/MessManagement_Php/deletestaff.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-  xmlhttp.send("id="+id);
+  xmlhttp.send("id=" + id);
 }
 
 function filterStudentsByName(id) {

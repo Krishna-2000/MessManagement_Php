@@ -375,9 +375,9 @@ display: none !important;
                             <ion-card-content style="padding-bottom: 0px;">
                             <ion-list style="padding-bottom: 0px;"> 
                             <?php 
-                              $query = " select * from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_name']."');";
+                              $query = " select * from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_id']."');";
                               $exec = mysqli_query($con,$query);
-                              $count = " select count(*) from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_name']."');";
+                              $count = " select count(*) from mess_cuts where mess_cuts.rollno in (select students.rollno from students where students.mess_id='".$_SESSION['mess_id']."');";
                               $exec2 = mysqli_query($con,$count);
                        
                         if(!$exec || !$exec2)
@@ -503,9 +503,9 @@ display: none !important;
                               <ion-card-content style="padding-bottom: 0px;"><ion-list style="padding-bottom: 0px;">
 
                     <?php 
-                        $query1 = "select count(*) from students where mess_id='".$_SESSION['mess_name']."';";
+                        $query1 = "select count(*) from students where mess_id='".$_SESSION['mess_id']."';";
                         $exec1 = mysqli_query($con,$query1);
-                        if(!exec1)
+                        if(!$exec1)
                         {
                           die('Error');
                         }
@@ -517,7 +517,7 @@ display: none !important;
                         else
                         {
                               $i=0;
-                              $query2 = "select rollno from students where mess_id='".$_SESSION['mess_name']."';";
+                              $query2 = "select rollno from students where mess_id='".$_SESSION['mess_id']."';";
                               $exec2 = mysqli_query($con,$query2);
                               $sum = 80*30;
                               
@@ -530,7 +530,7 @@ display: none !important;
                                 $ex1 = mysqli_query($con,$extra);
                                 $ex2 = mysqli_query($con,$guests);
                                 $ex3 = mysqli_query($con,$mess_cuts); 
-                                if(!ex1 || !ex2 || !ex3)
+                                if(!$ex1 || !$ex2 || !$ex3)
                                 {
                                   die('Error');
                                 }

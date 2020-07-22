@@ -21,7 +21,7 @@
 
     }
     else{
-        $_SESSION['mess_name'] = $mess_name;
+        $_SESSION['mess_id'] = $row['mess_id'];
         header("location:mess_dashboard.php");
     }
 

@@ -1,8 +1,8 @@
 <?php
     require('db.php');
     session_start();
-    $mess_name = $_SESSION['mess_name'];
-    $query = "select * from students where students.mess_id='".$mess_name."';";
+    $mess_id = $_SESSION['mess_id'];
+    $query = "select * from students where students.mess_id='".$mess_id."';";
     $result = mysqli_query($con,$query);
     if(!$result)
     {
