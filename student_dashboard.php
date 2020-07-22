@@ -1,5 +1,6 @@
 <?php
     require "db.php";
+    require_once "partials.php";
     session_start();
     if(!$_SESSION['rollno'])
     {
@@ -554,7 +555,7 @@
     </ion-content>
   </ion-app>
 </body>
-<script>
+<script type='text/javascript'>
 
 
 
@@ -562,11 +563,10 @@
 
     customElements.define('change-password', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML =  `<%= render partial: 'change_password'%> `;
+        this.innerHTML =`<?php echo $changePasswordHtml; ?>`;
       }
     });
     document.getElementById('defaultOpen').click();
-
 
 </script>
 </html>

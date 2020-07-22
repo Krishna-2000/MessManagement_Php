@@ -388,12 +388,7 @@ function onChangePassword(data) {
   } else {
     var i,
       txt = "";
-    txt = "<ul>";
-    errors = myObj.errors.map((er) => " " + er);
-    for (i = 0; i < errors.length; i++) {
-      txt += "<li style='color:red'>" + errors[i] + "</li>";
-    }
-    txt += "</ul>";
+    txt += "<p style='color:red'>" + myObj.error + "</p>";
     document.getElementById("change_password_errors").innerHTML = txt;
   }
 }
@@ -403,7 +398,7 @@ function changePassword(user) {
     "<ion-spinner></ion-spinner>";
   errors = document.getElementById("change_password_errors");
   errors.innerHTML = "";
-  var newPassword = document.getElementById("change_password[new]").value;
+  var newPassword = document.getElementById("new").value;
   var confirmation = document.getElementById("change_password_confirm").value;
   if (newPassword != confirmation) {
     errors.innerHTML =
@@ -411,7 +406,7 @@ function changePassword(user) {
     document.getElementById("change_button").innerHTML = "Change";
   } else {
     post(
-      "/" + user + "/changepassword",
+      "/change_password_student.php",
       postData("changepassword"),
       onChangePassword
     );
