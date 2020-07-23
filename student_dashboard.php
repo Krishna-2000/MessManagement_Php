@@ -204,7 +204,7 @@
                                     die('Some error has occured!');
                                 }
                                 $result = mysqli_fetch_array($exec);
-                                echo $result[1];
+                               // echo $result[1];
                             ?>
 
                             <ion-row>
