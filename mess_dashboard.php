@@ -587,7 +587,7 @@ display: none !important;
 
     customElements.define('select-roll-guest', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML = `<%= render partial: 'search_list', :locals=>{:id=>'guest'} %>`;
+        this.innerHTML = `<?php echo studentList('guest'); ?>`;
       }
     });
 
@@ -604,7 +604,7 @@ display: none !important;
 
     customElements.define('select-roll-extra', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML = `<%= render partial: 'search_list', :locals=>{:id=>'extra'} %>`;
+        this.innerHTML = `<?php echo studentList('extra'); ?>`;
       }
     });
 
