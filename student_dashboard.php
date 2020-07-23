@@ -387,7 +387,7 @@
                                     <input type="text" class="form-field" id="no_of_days" name="numdays"/>
                                     </ion-col>
                                 </ion-item>
-                                <br>
+                                <br> 
                                 <br>
                             <ion-item>
                             <ion-col></ion-col>

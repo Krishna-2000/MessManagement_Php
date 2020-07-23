@@ -14,7 +14,7 @@ $changePasswordStudent='<ion-header translucent>
           <ion-label position="floating">Current Password</ion-label>
             <ion-input id="current" class="changepassword" type="password" required="true"></ion-input>
             </ion-item>
-            <ion-item style="--ion-color-primary:  #8f15f4">
+            < ion-item style="--ion-color-primary:  #8f15f4">
             <ion-label position="floating">New Password</ion-label>
             <ion-input type="password" id="new" class="changepassword" required="true"></ion-input>
             </ion-item>

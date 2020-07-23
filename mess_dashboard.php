@@ -309,8 +309,8 @@ display: none !important;
                     </ion-item>
                     <br>
                             </ion-list>
-                            <ion-col offset="2.3">
-                            <ion-button  onClick="this.innerHTML='<ion-spinner></ion-spinner>'; post('/mess/addguest',postData('guest-field'),(data)=>{onAddGuest(data,this)});" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD GUEST</ion-button>
+                            <ion-col offset="2.3">(data)=>{onAddGuest(dat
+                            <ion-button  onClick="this.innerHTML='<ion-spinner></ion-spinner>'; post('/mess/addguest',postData('guest-field'),a,this)});" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD GUEST</ion-button>
                             <ion-button  type="reset" id='reset2' style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">RESET</ion-button>
                           </ion-col>
   
@@ -452,7 +452,7 @@ display: none !important;
                                  Roll No
                              </ion-col>
                              <ion-col>
-                               <input type="text" onfocus="selectRollExtra(event)" name="student_id" id="extra[student_id]" class="extra-field"/>
+                               <input type="text" onfocus="selectRollExtra(event)" name="student_id" id="student_id" class="extra-field"/>
                              </ion-col>   
                             </ion-item>
                             <br>
@@ -461,7 +461,7 @@ display: none !important;
                              Item
                          </ion-col>
                          <ion-col>
-                           <input type="text" name="item" id="extra[item]" class="extra-field"/>
+                           <input type="text" name="item" id="item" class="extra-field"/>
                          </ion-col>   
                         </ion-item>
                         <br>
@@ -470,13 +470,13 @@ display: none !important;
                          Price 
                      </ion-col>
                      <ion-col>
-                       <input type="text" name="price" id="extra[price]" class="extra-field"/>
+                       <input type="text" name="price" id="price" class="extra-field"/>
                      </ion-col>   
                     </ion-item>
                     <br>
                             </ion-list>
                             <ion-col offset="2.3">
-                            <ion-button id="reset" onClick="this.innerHTML='<ion-spinner></ion-spinner>';post('/mess/extra',postData('extra-field'),(data)=>{onPostExtra(data,this)});" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD EXTRA</ion-button>
+                            <ion-button id="reset" onClick="post('/create_extra.php',postData('extra-field'),(data)=>{onPostExtra(data,this))};" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD EXTRA</ion-button>
                             <ion-button id="reset1" type="reset" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">RESET</ion-button>
                             </ion-col>
   
@@ -581,7 +581,7 @@ display: none !important;
   customElements.define('student-data', class ModalContent extends HTMLElement {
       connectedCallback() {
         this.innerHTML = `<%= render partial: 'student_data' %>`;
-      }
+      } 
     });
 
 

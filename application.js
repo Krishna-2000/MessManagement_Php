@@ -524,7 +524,7 @@ function fillRollNoGuest(val) {
 }
 
 function fillRollNoExtra(val) {
-  document.getElementById("extra[student_id]").value = val;
+  document.getElementById("student_id").value = val;
   dismissPopover();
 }
 
