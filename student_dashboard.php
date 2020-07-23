@@ -510,7 +510,7 @@
                                        '.$i.'
                                     </ion-col>
                                    <ion-col>
-                                        '.$result[2].'
+                                        '.$result[1].'
                                    </ion-col>
                                     <ion-col>
                                         '.$result[3].'
