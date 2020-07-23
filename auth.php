@@ -7,17 +7,17 @@
     $execute = mysqli_query($con,$query);
         if(!$execute)
         {
-            die("Some error occurred. <a href='login.php'>Go back</a>");
+            die("Some error occurred. <a href='index.html'>Go back</a>");
         }
 
     $row = mysqli_fetch_assoc($execute);
     if(mysqli_num_rows($execute)!=1)
     {
-        echo "invalid rollno. <a href='login.html'>Go back</a>";
+        echo "invalid rollno. <a href='index.html'>Go back</a>";
     }
     elseif($row["password"]!=$password)
     {
-        echo "wrong password. <a href='login.html'>Go back</a>";
+        echo "wrong password. <a href='index.html'>Go back</a>";
 
     }
     else{

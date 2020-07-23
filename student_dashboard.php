@@ -4,7 +4,7 @@
     session_start();
     if(!$_SESSION['rollno'])
     {
-        header("location: login.html");
+        header("location: index.html");
     }
 ?>
 <!DOCTYPE html>

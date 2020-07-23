@@ -134,18 +134,18 @@ ion-content {
         </ion-item>
         <br><ion-label>&emsp;&nbsp;Password</ion-label>
         <ion-item>
-          <input type="text" name="password" class="form-field">
+          <input type="password" name="password" class="form-field">
         </ion-item>
         <br><ion-label>&emsp;&nbsp;Password Confirmation</ion-label>
         <ion-item>
-          <input type="text" name="password_confirmation" class="form-field">
+          <input type="password" name="password_confirmation" class="form-field">
         </ion-item>
       </ion-list>
 
       <div style="position:relative;left:70px;"   >
         <input type="submit" class="btn-hover color-1" style="width: 300px;" name="Sign Up">
     </div>
-    <div style="text-align: center;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="login.php">Login</a></div>
+    <div style="text-align: center;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="index.html">Login</a></div>
     <br><br>
     </ion-card>
   </ion-col>

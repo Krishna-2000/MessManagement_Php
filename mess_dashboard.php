@@ -2,6 +2,10 @@
     require "db.php";
     require_once "partials.php";
     session_start();
+    if(!$_SESSION['mess_id'])
+    {
+        header("location: index.html");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

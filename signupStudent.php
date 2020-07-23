@@ -113,6 +113,8 @@ ion-content {
        // $mess_id = $_REQUEST['mess_id'];
         $mess_id = $_REQUEST['mess_id'];
 
+        
+
         // $query = "INSERT INTO students(id,name,email,rollno,password,roomno,mess_id) VALUES ('".$id."','".$name."','".$email."','".$rollno."','".$password."','".$roomno."','".$mess_id."')";
         $query="insert into students(name,email,rollno,password,roomno,mess_id) values ('".$name."','".$email."','".$rollno."','".$password."',".$roomno.",'".$mess_id."');";
         echo $query;
@@ -152,11 +154,11 @@ ion-content {
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Password</ion-label>
                     <ion-item>
-                      <input type="text" name="password" class="form-field"><br>
+                      <input type="password" name="password" class="form-field"><br>
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Password Confirmation</ion-label>
                     <ion-item>
-                      <input type="text" name="Password_confirmation" class="form-field"><br>
+                      <input type="password" name="Password_confirmation" class="form-field"><br>
                     </ion-item>
                     <br><ion-label>&emsp;&nbsp;Mess Name</ion-label>
                     <ion-item>
@@ -191,7 +193,7 @@ ion-content {
                   <div style="position:relative;left:70px;">
                     <input type="submit" name="Sign Up" style="width: 300px;" class="btn-hover color-1">
                 </div>
-                <div style="text-align: center;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="login.php">Login</a></div>
+                <div style="text-align: center;"><a style="text-decoration: none; font-size: 17px; color: rgba(0, 0, 0, 0.6);" onMouseOver="this.style.color='purple'" onMouseOut="this.style.color='rgba(0, 0, 0, 0.6)'" href="index.html">Login</a></div>
                 <br><br>
                 </ion-card>
               </ion-col>

@@ -331,7 +331,7 @@ function onGetProfile(data, id, isOpeningModal) {
                                     :
                                 </ion-col>
                                 <ion-col size=5.5>
-                                ${student.mess}
+                                ${student.data.mess_id}
                                 
                                 </ion-col>
                             </ion-item>
