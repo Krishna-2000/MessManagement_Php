@@ -370,7 +370,6 @@ function onMessCut(data) {
 }
 
 function onPostExtra(data, el) {
- 
   el.innerHTML = "ADD EXTRA";
   var myObj = JSON.parse(data);
   console.log(data);
@@ -434,7 +433,7 @@ function onCreateStaff(data) {
     dismissModal();
     getStaffs();
   } else {
-    alert(myObj.errors);
+    alert(myObj.error);
   }
 }
 

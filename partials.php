@@ -47,7 +47,7 @@ $changePasswordStudent='<ion-header translucent>
           </ion-item>
           <br>
           <div style="text-align:center;">
-          <ion-button id="change_button" style="--ion-color-primary:  #8f15f4;self-align:center; margin-bottom: 10px;" onClick="post("/add_staff.php",postData("staff-form"),onCreateStaff(data,this))">Add Staff</ion-button>
+          <ion-button id="change_button" style="--ion-color-primary:  #8f15f4;self-align:center; margin-bottom: 10px;" onClick="post(\'add_staff.php\',postData(\'staff-form\'),(data)=>{onCreateStaff(data,this)})">Add Staff</ion-button>
           </div>
           </ion-content>';
 
