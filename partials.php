@@ -71,4 +71,42 @@ function studentList($id)
   </ion-row>
   </ion-grid>';
 }
+
+
+
+$studentData='  <ion-header translucent>
+<ion-toolbar color="primary" style="--ion-color-primary: #8f15f4;">
+  <ion-title id="student_data_modal_title" style="text-align: center;"></ion-title>
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+<ion-segment style="--ion-color-primary: #8f15f4" scrollable value="profile">
+<input type="hidden" id="student_data_id"/>
+<ion-segment-button id="initialSelectedSegment" onClick="studentDataOptionChange(event)" value="profile" layout="icon-start">
+<ion-icon name="person-outline"></ion-icon>
+<ion-label>Profile</ion-label>
+</ion-segment-button>
+<ion-segment-button onClick="studentDataOptionChange(event)" value="extras" layout="icon-start">
+<ion-icon name="beer-outline"></ion-icon>
+<ion-label>Extras</ion-label>
+</ion-segment-button>
+<ion-segment-button onClick="studentDataOptionChange(event)" value="guests" layout="icon-start">
+<ion-icon name="people-outline"></ion-icon>
+<ion-label>Guests</ion-label>
+</ion-segment-button>
+<ion-segment-button onClick="studentDataOptionChange(event)" value="messcuts" layout="icon-start">
+<ion-icon name="home-outline"></ion-icon>
+<ion-label>Mess Cuts</ion-label>
+</ion-segment-button>
+<ion-segment-button onClick="studentDataOptionChange(event)" value="messfee" layout="icon-start">
+<ion-icon name="cash-outline"></ion-icon>
+<ion-label>Mess Fee</ion-label>
+</ion-segment-button>
+</ion-segment>
+<div id="profileContent">
+</div>
+</ion-content>
+';
 ?>

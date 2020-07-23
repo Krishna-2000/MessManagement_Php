@@ -1,7 +1,14 @@
 <?php
 require_once "db.php";
 session_start();
-$rollno=$_SESSION['rollno'];
+if($_REQUEST['rollno'])
+{
+    $rollno=$_REQUEST['rollno'];
+}
+else
+{
+    $rollno=$_SESSION['rollno'];
+}
 $query="select * from students,guests where students.rollno='".$rollno."' and students.rollno=guests.rollno";
 $result=mysqli_query($con,$query);
 if(!$result)

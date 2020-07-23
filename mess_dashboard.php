@@ -286,7 +286,7 @@ display: none !important;
                                  Student Roll No
                              </ion-col>
                              <ion-col>
-                               <input type="text"  onfocus="selectRollGuest(event)" id="guest[student_id]" class="guest-field"/>
+                               <input type="text"  onfocus="selectRollGuest(event)" id="student_id" class="guest-field"/>
                              </ion-col>   
                             </ion-item>
                             <br>
@@ -295,7 +295,7 @@ display: none !important;
                              Guest Name
                          </ion-col>
                          <ion-col>
-                           <input type="text" name="item"  id="guest[name]" class="guest-field">
+                           <input type="text" name="item"  id="name" class="guest-field">
                          </ion-col>   
                         </ion-item>
                         <br>
@@ -304,13 +304,13 @@ display: none !important;
                          Guest Roll No
                      </ion-col>
                      <ion-col>
-                       <input type="text" name="price" id="guest[rollno]"  class="guest-field">
+                       <input type="text" name="price" id="rollno"  class="guest-field">
                      </ion-col>   
                     </ion-item>
                     <br>
                             </ion-list>
-                            <ion-col offset="2.3">(data)=>{onAddGuest(dat
-                            <ion-button  onClick="this.innerHTML='<ion-spinner></ion-spinner>'; post('/mess/addguest',postData('guest-field'),a,this)});" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD GUEST</ion-button>
+                            <ion-col offset="2.3">
+                            <ion-button  onClick="this.innerHTML='<ion-spinner></ion-spinner>'; post('/addguest.php',postData('guest-field'),(data)=>{onAddGuest(data,this)});" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD GUEST</ion-button>
                             <ion-button  type="reset" id='reset2' style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">RESET</ion-button>
                           </ion-col>
   
@@ -476,7 +476,7 @@ display: none !important;
                     <br>
                             </ion-list>
                             <ion-col offset="2.3">
-                            <ion-button id="reset" onClick="post('/create_extra.php',postData('extra-field'),(data)=>{onPostExtra(data,this))};" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD EXTRA</ion-button>
+                            <ion-button id="reset" onClick="post('/create_extra.php',postData('extra-field'),(data)=>{onPostExtra(data,this)});" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">ADD EXTRA</ion-button>
                             <ion-button id="reset1" type="reset" style = "width:200px;height:40px;background-color: #8f15f4;color:white;" color="#8f15f4">RESET</ion-button>
                             </ion-col>
   
