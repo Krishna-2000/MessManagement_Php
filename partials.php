@@ -1,3 +1,5 @@
+<script type="text/javascript" src="application.js"></script>
+
 <?php
 
 $changePasswordStudent='<ion-header translucent>
@@ -26,6 +28,29 @@ $changePasswordStudent='<ion-header translucent>
             <ion-button id="change_button" style="--ion-color-primary:  #8f15f4;self-align:center; margin-bottom: 10px;" onClick="changePassword(\'student\');">Change</ion-button>
             </div>
           </ion-content>';
+
+$addStaffForm= '<ion-header translucent>
+                    <ion-toolbar>
+                      <ion-title>Add Staff</ion-title>
+                      <ion-buttons slot="end">
+                        <ion-button slot="icon-only" onClick="dismissPopover()"><ion-icon name="close"></ion-icon></ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                    </ion-header>
+                    <ion-content>
+                    <ion-item style="--ion-color-primary:  #8f15f4">
+                    <ion-label position="floating" >Name</ion-label>
+                    <ion-input id="name" class="staff-form" type="text" required="true"></ion-input>
+                    </ion-item>
+                    <ion-item style="--ion-color-primary:  #8f15f4">
+                    <ion-label position="floating">Phone Number</ion-label>
+                    <ion-input type="text" id="phoneno" class="staff-form" required="true"></ion-input>
+                    </ion-item>
+                    <br>
+                    <div style="text-align:center;">
+                    <ion-button id="change_button" style="--ion-color-primary:  #8f15f4;self-align:center; margin-bottom: 10px;" onClick="post("/add_staff.php",postData("staff-form"),onCreateStaff(data,this))">Add Staff</ion-button>
+                    </div>
+                    </ion-content>';
 
 
 $changePasswordMess='<ion-header translucent>

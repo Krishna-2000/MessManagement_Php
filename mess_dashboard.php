@@ -609,13 +609,9 @@ display: none !important;
     });
 
 
-
-
-
-
 customElements.define('add-staff-form', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML = `<%= render partial: 'add_staff'%> `;
+        this.innerHTML = `<?php echo $addStaffForm;?>`;
       }
     });
 
