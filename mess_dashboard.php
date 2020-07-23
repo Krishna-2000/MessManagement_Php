@@ -580,7 +580,7 @@ display: none !important;
 
   customElements.define('student-data', class ModalContent extends HTMLElement {
       connectedCallback() {
-        this.innerHTML = `<%= render partial: 'student_data' %>`;
+        this.innerHTML = `<?php echo $studentData; ?>`;
       } 
     });
 
