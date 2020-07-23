@@ -373,7 +373,7 @@ function onPostExtra(data, el) {
  
   el.innerHTML = "ADD EXTRA";
   var myObj = JSON.parse(data);
-  console.log(myObj);
+  console.log(data);
   if (myObj.added) {
     showToast("Extra Added Successfully");
     document.getElementById("reset1").click();
@@ -522,7 +522,7 @@ function fillRollNoGuest(val) {
 }
 
 function fillRollNoExtra(val) {
-  document.getElementById("student_id").value = val;
+  document.getElementById("estudent_id").value = val;
   dismissPopover();
 }
 
@@ -771,9 +771,10 @@ function deleteStaff(id) {
 function filterStudentsByName(id) {
   var input, filter, ul, li, a, i, txtValue;
   input = document.getElementById("nameSearchBar_" + id);
+  console.log(input.value);
   filter = input.value.toUpperCase();
   names = document.getElementsByClassName("student_name_" + id);
-  console.log(names);
+  //console.log(names);
   items = document.getElementsByClassName("student_item_" + id);
   var count = 0;
   for (i = 0; i < names.length; i++) {

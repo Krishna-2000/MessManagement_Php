@@ -1,6 +1,6 @@
 <?php
 require('db.php');
-$rollno=$_POST['student_id'];
+$rollno=$_POST['estudent_id'];
 $item=$_POST['item'];
 $price=$_POST['price'];
 session_start();
